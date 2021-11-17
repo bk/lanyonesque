@@ -4,6 +4,19 @@
  * some of the components in lanyon/ or poole/.  If you want to override
  * something in lanyon/, you also have to copy _lanyon.scss over (and same for
  * poole/ and _poole.scss).
+ *
+ * There are two scss variables in _lanyon.scss which may be overridden
+ * in your own version of this file. They are commented out below.
+*/
+
+/*
+  Font variables - the defauls are set in _lanyon.scss (PT Sans and Serif).
+  If you customize them you might find it sensible to override
+  templates/base/fonts.mc as well.
+*/
+/*
+$sans-font: "Open Sans";
+$serif-font: "Noto Serif";
 */
 
 @import "lanyon";

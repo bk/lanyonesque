@@ -24,6 +24,11 @@
  * Themes
  */
 
+/* Variables */
+
+$serif-font: "PT Serif" !default;
+$sans-font: "PT Sans" !default;
+
 @import "lanyon/resets";
 @import "lanyon/container";
 @import "lanyon/masthead";

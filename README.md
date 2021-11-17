@@ -9,7 +9,7 @@ the [Lanyon demo site][demo].
 [lanyon]: http://lanyon.getpoole.com
 [demo]: https://lanyon.getpoole.com/
 
-## Setup
+## Setup and customization
 
 In your `wmk` project put the `lanyonesque` theme inside the `themes`
 subdirectory, e.g. by cloning this repository under that name or adding it as a
@@ -71,6 +71,15 @@ The following css classes are supported in the value of `site_body_css_class`.
   pushing it to the side, which is the default.
 
 All of these settings are inherited from Lanyon.
+
+### Fonts
+
+Lanyonesque, like Lanyon, uses the font PT Serif for body text and PT Sans for
+most other things. You can customize the fonts by overriding
+`assets/scss/lanyonesque.scss` and setting the Sass variables `$sans-font` and
+`$serif-font`. If you do this, you would probably also want to override the
+Mako component `templates/base/fonts.scss` which defines the necessary CSS
+`@font-face` imports (via Google Fonts).
 
 ## File organization
 
