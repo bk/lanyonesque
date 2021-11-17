@@ -1,0 +1,14 @@
+default_template: base/default.mhtml
+pre_render: true
+markdown_extensions: ['extra', 'sane_lists', 'codehilite']
+theme: lanyonesque
+template_context:
+    site_title: Lanyonesque
+    site_base_url: https://wmk-example.net
+    site_tagline: A port of the Jekyll theme Lanyon to wmk
+    site_lang: en
+    site_description: This is a site using Lanyonesque, which is a port of the Jekyll theme Lanyon to wmk.
+    paginate: 4
+    site_author: Baldur Kristinsson
+    site_author_email: bk@wmk-example.net
+    site_body_css_class: layout-reverse sidebar-overlay

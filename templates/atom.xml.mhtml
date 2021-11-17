@@ -1,0 +1,39 @@
+<%!
+import datetime
+
+def pathtruncate(s):
+    return s.replace('/index.html', '/')
+
+def xmldate(s):
+    if isinstance(s, str):
+        return s + 'T00:00:00+00:00'
+    elif isinstance(s, datetime.datetime):
+        return str(datetime.datetime.now()).replace(' ', 'T')[:19] + '+00:00'
+%>\
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<%namespace name="default" file="base/default.mhtml" />
+<%
+  posts = default.all_posts()
+  page_size = context.get('site_paginate', 5)
+%>\
+ <title>${ site_title }</title>
+ <link href="${ site_base_url }/atom.xml" rel="self"/>
+ <link href="${ site_base_url }/"/>
+ <updated>${ xmldate(datetime.datetime.now()) }</updated>
+ <id>${ site_base_url }</id>
+ <author>
+   <name>${ site_author }</name>
+   <email>${ site_author_email }</email>
+ </author>
+
+ % for post in posts[:page_size]:
+ <entry>
+   <title>${ post['data']['title'] }</title>
+   <link href="${ site_base_url }${ post['url'] |pathtruncate }"/>
+   <updated>${ xmldate(post['data']['pubdate']) }</updated>
+   <id>${ site_base_url }${ post['url'] |pathtruncate }</id>
+   <content type="html">${ post['rendered'] | x }</content>
+ </entry>
+ % endfor
+</feed>

@@ -1,0 +1,7 @@
+<%inherit file="default.mhtml" />
+<%block name="content">
+<div class="page">
+  <h1 class="page-title">${ title or '(Missing title)' }</h1>
+  ${ CONTENT }
+</div>
+</%block>

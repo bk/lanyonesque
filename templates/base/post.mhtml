@@ -1,0 +1,33 @@
+<%inherit file="default.mhtml" />
+
+<%block name="content">
+  <div class="post">
+    <h1 class="post-title">${ title or '(title missing)' }</h1>
+    <span class="post-date">${ pubdate or MTIME | self.attr.date_format }</span>
+    ${ CONTENT }
+  </div>
+  ${ related_posts() }
+</%block>
+
+<%def name="related_posts()">
+  <%
+  posts = self.all_posts()
+  if not posts:
+      return ''
+  %>
+  <div class="related">
+    <h2>Related posts</h2>
+    <ul class="related-posts">
+      % for post in posts:
+        <li>
+          <h3>
+            <a href="${ post['url'] }">
+              ${ post['data']['title'] }
+              <small>${ post['data']['pubdate'] }</small>
+            </a>
+          </h3>
+        </li>
+      % endfor
+    </ul>
+  </div>
+</%def>
