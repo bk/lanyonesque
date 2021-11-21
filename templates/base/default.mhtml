@@ -1,11 +1,11 @@
 <%!
 import time
 
-def date_format(s):
+def date_format(dt):
     try:
-        return time.strftime('%Y-%m-%d', time.gmtime(float(s)))
+        return dt.strftime('%Y-%m-%d')
     except:
-        return s
+        return str(dt)
 %>\
 <!DOCTYPE html>
 <html lang="${ site_lang or 'en-us' }">

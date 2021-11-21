@@ -4,11 +4,14 @@ import datetime
 def pathtruncate(s):
     return s.replace('/index.html', '/')
 
-def xmldate(s):
-    if isinstance(s, str):
-        return s + 'T00:00:00+00:00'
-    elif isinstance(s, datetime.datetime):
-        return str(datetime.datetime.now()).replace(' ', 'T')[:19] + '+00:00'
+def xmldate(dt):
+    s = str(dt).replace(' ', 'T')
+    if len(s) == 10:
+        s += 'T00:00:00'
+    if '+' in s:
+        return s[:19] + s[-6:]
+    else:
+        return s[:19] + '+00:00'
 %>\
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
