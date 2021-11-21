@@ -1,5 +1,4 @@
 ---
-template: base/post.mhtml
 pubdate: 2021-11-11
 title: Introducing Lanyonesque
 ---

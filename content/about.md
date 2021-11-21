@@ -1,5 +1,4 @@
 ---
-template: base/page.mhtml
 title: About
 ---
 
@@ -23,7 +22,6 @@ Here is a sample `wmk_config.yaml` file demonstrating them:
 
 ```yaml
 default_template: base/default.mhtml
-pre_render: true
 markdown_extensions: ['extra', 'sane_lists', 'codehilite']
 theme: lanyonesque
 template_context:
@@ -45,10 +43,6 @@ Some of them are required, others are optional but recommended.
 
 It is not necessary to add `codehilite` to `markdown_exensions` unless you
 intend to use fenced code blocks in your markdown content.
-
-The `pre_render` setting is necessary unless you intend to change the
-default frontpage, which shows a list of blog entries (including the
-entry body).
 
 ### Theme appearance
 
@@ -77,7 +71,7 @@ By default, Lanyonesque is a blog-oriented theme. If you wish to change this,
 you need to override the frontpage (`index.mhtml`) as well as the `sidebar` def
 of the default base template, `base/default.mhtml`.
 
-Blog entries go into `content/posts'. They should specify `title`, `pubdate` (a
+Blog entries go into `content/posts`. They should specify `title`, `pubdate` (a
 date in ISO format) and `template` in their frontmatter. Normally the value of
 `template` should be `base/post.mhtml`. Blog entries are displayed on the
 frontpage which paginated. The value of `site_paginate` determines how many

@@ -118,10 +118,9 @@ def date_format(dt):
 ## DATA DEFS
 
 <%def name="all_posts(except_self=True)"><%
-    if except_self:
-        posts = [_ for _ in MDCONTENT if _['url'] != SELF_URL and _['url'].startswith('/posts/')]
-    else:
-        posts = [_ for _ in MDCONTENT if _['url'].startswith('/posts/')]
+    posts = [_ for _ in MDCONTENT if _['data'].get('section', '') == 'blog']
+    if False and except_self:
+        posts = [_ for _ in posts if _['url'] != SELF_URL]
     posts.sort(key=lambda x: x['data'].get('pubdate', x['data']['MTIME']), reverse=True)
     return posts
 %></%def>

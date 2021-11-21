@@ -1,5 +1,4 @@
 ---
-template: base/post.mhtml
 pubdate: 2021-10-01
 title: Placeholder post 1
 ---

@@ -1,5 +1,4 @@
 default_template: base/default.mhtml
-pre_render: true
 markdown_extensions: ['extra', 'sane_lists', 'codehilite']
 theme: lanyonesque
 template_context:
