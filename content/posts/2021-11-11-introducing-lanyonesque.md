@@ -14,5 +14,5 @@ For further information about the theme and its usage, see the
 [jekyll]: https://jekyllrb.com
 [mdo]: https://twitter.com/mdo
 [bk]: https://github.com/bk/
-[about]: /about.html
+[about]: /about/
 

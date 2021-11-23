@@ -1,6 +1,10 @@
 ---
 pubdate: 2021-11-01
 title: Example content
+summary: |
+    A short demonstration of how various types of HTML content appear when
+    the Lanyonesque theme is active. (By the way, this summary text is only
+    visible on the page when `site_posts_list_detail` is set to `summary`).
 ---
 
 <div class="message">
