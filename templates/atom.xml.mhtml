@@ -24,7 +24,7 @@ def xmldate(dt):
  <link href="${ site_base_url }${ site_leading_path or '' }/atom.xml" rel="self"/>
  <link href="${ site_base_url }${ site_leading_path or '' }/"/>
  <updated>${ xmldate(datetime.datetime.now()) }</updated>
- <id>${ site_base_url }</id>
+ <id>${ site_base_url }${ site_leading_path or '' }/</id>
  <author>
    <name>${ site_author }</name>
    <email>${ site_author_email }</email>
