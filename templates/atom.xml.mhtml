@@ -21,8 +21,8 @@ def xmldate(dt):
   page_size = context.get('site_paginate', 5)
 %>\
  <title>${ site_title }</title>
- <link href="${ site_base_url }/atom.xml" rel="self"/>
- <link href="${ site_base_url }/"/>
+ <link href="${ site_base_url }${ site_leading_path or '' }/atom.xml" rel="self"/>
+ <link href="${ site_base_url }${ site_leading_path or '' }/"/>
  <updated>${ xmldate(datetime.datetime.now()) }</updated>
  <id>${ site_base_url }</id>
  <author>
@@ -33,7 +33,7 @@ def xmldate(dt):
  % for post in posts[:page_size]:
  <entry>
    <title>${ post['data']['title'] }</title>
-   <link href="${ site_base_url }${ post['url'] |pathtruncate }"/>
+   <link href="${ site_base_url }${ site_leading_path or '' }${ post['url'] |pathtruncate }"/>
    <updated>${ xmldate(post['data']['pubdate']) }</updated>
    <id>${ site_base_url }${ post['url'] |pathtruncate }</id>
    <content type="html">${ post['rendered'] | x }</content>

@@ -3,7 +3,7 @@
 <%block name="content">
   <div class="post">
     <h1 class="post-title">${ title or '(title missing)' }</h1>
-    <span class="post-date">${ pubdate or MTIME | self.attr.date_format }</span>
+    <span class="post-date">${ self.dates.date_format(pubdate or MTIME) }</span>
     ${ CONTENT }
   </div>
   ${ related_posts() }
@@ -21,7 +21,7 @@
       % for post in posts:
         <li>
           <h3>
-            <a href="${ post['url'] }">
+            <a href="${ site_leading_path or '' }${ post['url'] }">
               ${ post['data']['title'] }
               <small>${ post['data']['pubdate'] }</small>
             </a>

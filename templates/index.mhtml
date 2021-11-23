@@ -1,14 +1,6 @@
 <%inherit file="base/default.mhtml" />
-<%!
-import re
-
-def summary(s):
-    s = re.sub(r'^\s+#+[^\n]+\s+', '', s)
-    s = re.sub(r'^\s+', '', s)
-    s = re.sub(r'\n\n[\s\S]*', '', s)
-    return s or '--?--'
-%>
 <%namespace file="/lib/pagination.mc" import="paginate, prevnext" />
+<%namespace file="/lib/posts.mc" import="posts_list" />
 
 <%block name="content">
 <%
@@ -17,24 +9,11 @@ def summary(s):
     posts_page, page_count, page, page_urls = paginate(posts, page_size)
 %>
 <div class="posts">
-  % for post in posts_page:
-    <div class="post">
-      <h1 class="post-title">
-        <a href="${ post['url'] }">
-          ${ post['data']['title'] }
-        </a>
-      </h1>
-      <span class="post-date">${ post['data'].get('pubdate',None) or post['data'].get('MTIME') | self.attr.date_format }</span>
-      ## ${ post['data'].get('summary') or summary(post['doc']) }
-      ${ post['rendered'] }
-  </div>
-  % endfor
+  ${ posts_list(posts_page)  }
 </div>
-
 % if page_count > 1:
   ${ prevnext(page_count, page, page_urls) }
 % endif
 </%block>
 
-<%def name="page_title()">Forsíða &middot; ${ site_title }</%def>
-
+<%def name="page_title()">Front page &middot; ${ site_title }</%def>

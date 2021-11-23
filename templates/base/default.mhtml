@@ -1,12 +1,7 @@
 <%!
 import time
-
-def date_format(dt):
-    try:
-        return dt.strftime('%Y-%m-%d')
-    except:
-        return str(dt)
 %>\
+<%namespace file="/lib/dates.mc" name="dates" inheritable="True" />
 <!DOCTYPE html>
 <html lang="${ site_lang or 'en-us' }">
 
@@ -23,7 +18,7 @@ def date_format(dt):
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="/" title="Home">${ site_title or '(SITE_TITLE MISSING)' }</a>
+            <a href="${ site_leading_path or '' }/" title="Home">${ site_title or '(SITE_TITLE MISSING)' }</a>
             <small>${ site_tagline or '(SITE_TAGLINE MISSING)' }</small>
           </h3>
         </div>
@@ -53,10 +48,10 @@ def date_format(dt):
     ${ self.page_title() }
   </title>
 
-  <link rel="stylesheet" href="/css/lanyonesque.css">
+  <link rel="stylesheet" href="${ site_leading_path or '' }/css/lanyonesque.css">
   <%include file="fonts.mc" />
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-precomposed.png">
-  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${ site_leading_path or '' }/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="${ site_leading_path or '' }/favicon.ico">
 
   % if google_analytics_id:
   <script>
@@ -93,7 +88,7 @@ def date_format(dt):
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item${ ' active' if SELF_URL == '/index.html' else '' }" href="/">Home</a>
+    <a class="sidebar-nav-item${ ' active' if SELF_URL == '/index.html' else '' }" href="${ site_leading_path or '' }/">Home</a>
 
     <%
       # pages are mdcontent items with template 'base/page.mhtml'
@@ -102,7 +97,7 @@ def date_format(dt):
     %>
     % for p in pages:
       % if p['data'].get('title'):
-        <a class="sidebar-nav-item${ ' active' if p['url'] == SELF_URL else ''}" href="${ p['url'] }">${ p['data']['title'] }</a>
+        <a class="sidebar-nav-item${ ' active' if p['url'] == SELF_URL else ''}" href="${ site_leading_path or '' }${ p['url'] }">${ p['data']['title'] }</a>
       % endif
     % endfor
   </nav>
