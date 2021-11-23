@@ -10,9 +10,10 @@
 */
 
 /*
-  Font variables - the defauls are set in _lanyon.scss (PT Sans and Serif).
+  Font variables - the defauls are set in _lanyon.scss (PT Sans and PT Serif).
   If you customize them you might find it sensible to override
   templates/base/fonts.mc as well.
+  The values of these variables must be valid as font names on Google Fonts.
 */
 /*
 $sans-font: "Open Sans";
