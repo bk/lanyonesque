@@ -3,11 +3,11 @@ import time
 %>\
 <%namespace file="/lib/dates.mc" name="dates" inheritable="True" />
 <!DOCTYPE html>
-<html lang="${ site_lang or 'en-us' }">
+<html lang="${ page.lang or site.lang or 'en-us' }">
 
   ${ self.head() }
 
-  <% body_class = ' class="{}"'.format(site_body_css_class) if site_body_css_class else '' %>
+  <% body_class = ' class="{}"'.format(site.body_css_class) if site.body_css_class else '' %>
   <body${body_class}>
 
     ${ self.sidebar() }
@@ -18,8 +18,8 @@ import time
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="${ site_leading_path or '' }/" title="Home">${ site_title or '(SITE_TITLE MISSING)' }</a>
-            <small>${ site_tagline or '(SITE_TAGLINE MISSING)' }</small>
+            <a href="${ site.leading_path or '' }/" title="Home">${ site.title or '(SITE.TITLE MISSING)' }</a>
+            <small>${ site.tagline or '(SITE.TAGLINE MISSING)' }</small>
           </h3>
         </div>
       </div>
@@ -48,10 +48,10 @@ import time
     ${ self.page_title() }
   </title>
 
-  <link rel="stylesheet" href="${ site_leading_path or '' }/css/lanyonesque.css">
+  <link rel="stylesheet" href="${ site.leading_path or '' }/css/lanyonesque.css">
   <%include file="fonts.mc" />
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${ site_leading_path or '' }/apple-touch-icon-precomposed.png">
-  <link rel="shortcut icon" href="${ site_leading_path or '' }/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${ site.leading_path or '' }/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="${ site.leading_path or '' }/favicon.ico">
 
   % if google_analytics_id:
   <script>
@@ -67,12 +67,12 @@ import time
 </%def>
 
 <%def name="page_title()">
-% if title and site_title:
-  ${ title } &middot; ${ site_title }
-% elif title:
-  ${ title }
-% elif site_title:
-  ${ site_title } &middot; ${ site_tagline or '-' }
+% if page.title and site.title:
+  ${ page.title } &middot; ${ site.title }
+% elif page.title:
+  ${ page.title }
+% elif site.title:
+  ${ site.title } &middot; ${ site.tagline or '-' }
 % endif
 </%def>
 
@@ -84,11 +84,11 @@ import time
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-item">
-    <p>${ site_description or '(MISSING SITE_DESCRIPTION)' }</p>
+    <p>${ site.description or '(MISSING SITE.DESCRIPTION)' }</p>
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item${ ' active' if SELF_URL == '/index.html' else '' }" href="${ site_leading_path or '' }/">Home</a>
+    <a class="sidebar-nav-item${ ' active' if SELF_URL == '/index.html' else '' }" href="${ site.leading_path or '' }/">Home</a>
 
     <%
       # pages are mdcontent items with template 'base/page.mhtml'
@@ -97,14 +97,14 @@ import time
     %>
     % for p in pages:
       % if p['data'].get('title'):
-        <a class="sidebar-nav-item${ ' active' if p['url'] == SELF_URL else ''}" href="${ site_leading_path or '' }${ p['url'] }">${ p['data']['title'] }</a>
+        <a class="sidebar-nav-item${ ' active' if p['url'] == SELF_URL else ''}" href="${ site.leading_path or '' }${ p['url'] }">${ p['data']['title'] }</a>
       % endif
     % endfor
   </nav>
 
   <div class="sidebar-item">
     <p>
-      &copy; ${ site_author or '' } ${ site_year or 2021 }. All rights reserved.
+      &copy; ${ site.author or '' } ${ site.year or 2021 }. All rights reserved.
     </p>
   </div>
 </div>
@@ -113,7 +113,7 @@ import time
 ## DATA DEFS
 
 <%def name="all_posts(except_self=True)"><%
-    posts = [_ for _ in MDCONTENT if _['data'].get('section', '') == 'blog']
+    posts = [_ for _ in MDCONTENT if _['data']['page'].get('section', '') == 'blog']
     if False and except_self:
         posts = [_ for _ in posts if _['url'] != SELF_URL]
     posts.sort(key=lambda x: x['data'].get('pubdate', x['data']['MTIME']), reverse=True)

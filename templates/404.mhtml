@@ -6,6 +6,6 @@
 <h1>404: Page not found</h1>
 
 <p>Sorry, we've misplaced that URL or it's pointing to something that
-  doesn't exist. <a href="${ site_leading_path or '' }/">Head back home</a>
+  doesn't exist. <a href="${ site.leading_path or '' }/">Head back home</a>
   to try finding it again.</p>
 </%block>

@@ -5,7 +5,7 @@
 <%block name="content">
 <%
     posts = self.all_posts()
-    page_size = context.get('site_paginate', 5)
+    page_size = context.get('site.paginate', 5)
     posts_page, page_count, page, page_urls = paginate(posts, page_size)
 %>
 <div class="posts">
@@ -16,4 +16,4 @@
 % endif
 </%block>
 
-<%def name="page_title()">Front page &middot; ${ site_title }</%def>
+<%def name="page_title()">Front page &middot; ${ site.title }</%def>

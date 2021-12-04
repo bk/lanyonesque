@@ -27,22 +27,22 @@ Here is a sample `wmk_config.yaml` file demonstrating them:
 ```yaml
 theme: lanyonesque
 markdown_extensions: ['extra', 'sane_lists', 'codehilite']
-template_context:
-    site_title: Lanyonesque
-    site_base_url: https://wmk-example.net
-    site_leading_path: ''
-    site_tagline: A port of the Jekyll theme Lanyon to wmk
-    site_lang: en
-    site_date_format: "%d %b %Y"
-    site_datetime_format: "%d %b %Y %H:%M"
-    site_description: |
+site:
+    title: Lanyonesque
+    base_url: https://wmk-example.net
+    leading_path: ''
+    tagline: A port of the Jekyll theme Lanyon to wmk
+    lang: en
+    date_format: "%d %b %Y"
+    datetime_format: "%d %b %Y %H:%M"
+    description: |
         This is an example site illustrating Lanyonesque,
         which is a port of the Jekyll theme Lanyon to wmk.
-    site_paginate: 4
-    site_posts_list_detail: summary
-    site_author: Dr. Hastie Lanyon
-    site_author_email: hl@wmk-example.net
-    site_body_css_class: layout-reverse sidebar-overlay
+    paginate: 4
+    posts_list_detail: summary
+    author: Dr. Hastie Lanyon
+    author_email: hl@wmk-example.net
+    body_css_class: layout-reverse sidebar-overlay
 ```
 
 All of the context variables used by the theme have names starting with `site`.
@@ -53,42 +53,42 @@ intend to use fenced code blocks in your markdown content.
 
 Many of the settings should be self-explanatory. Here are the exceptions:
 
-- `site_base_url`: This is the hostname where the site will be hosted, with
+- `site.base_url`: This is the hostname where the site will be hosted, with
   either 'https://' or 'http://' in front. It should **not** end with a slash.
   This variable is only used in the `atom.xml` file.
 
-- `site_leading_path`: This is the directory on the host where everything which
+- `site.leading_path`: This is the directory on the host where everything which
   `wmk` puts into `htdocs` will be located, relative to the host's webroot. If
    you host the site on a separate domain or subdomain, this should be an empty
    string.  If anything is set here, it should start with a slash and end
    without one. Example: `/mypages/blog`.
 
-- `site_date_format` and `site_datetime_format`: Formatting strings for
+- `site.date_format` and `site.datetime_format`: Formatting strings for
   `strftime()`. The former is used for date objects, the latter for datetime
   objects. This affects how blog entries are displayed. The defaults are
   `%Y-%m-%d` and `%Y-%m-%d %H:%M`, respectively. See `templates/lib/dates.mc` for
   details.
 
-- `site_paginate`: How many posts at a time should be displayed on the front
+- `site.paginate`: How many posts at a time should be displayed on the front
   page before pagination kicks in. The default is 5.
 
-- `site_posts_list_detail`: What level of detail of a blog post should be shown
+- `site.posts_list_detail`: What level of detail of a blog post should be shown
   in a list page. The possible values are "title", "summary" and "full", which
   is the default. If "summary" is specified, the frontmatter `summary` of the
   blog post is used if available (note that it may contain markdown); otherwise
   the first paragraph of the post is shown.
 
-- `site_body_css_class`: controls the appearance of the topnav and sidebar; see
+- `site.body_css_class`: controls the appearance of the topnav and sidebar; see
   below.
 
 ### Theme appearance
 
 Lanyonesque supports some modifications to the appearance and
 functionality of the theme through the context variable
-`site_body_css_class` as seen above. This sets the `<body>` class(es) in the
+`site.body_css_class` as seen above. This sets the `<body>` class(es) in the
 default base template.
 
-The following css classes are supported in the value of `site_body_css_class`.
+The following css classes are supported in the value of `site.body_css_class`.
 
 - Colour theme: `theme-base-08` (red), `theme-base-09` (orange),
   `theme-base-0a` (yellow), `theme-base-0b` (green), `theme-base-0c` (teal),
@@ -132,7 +132,7 @@ datetime in ISO format). If `pubdate` is missing, the modification of the
 file is used instead.
 
 Blog entries are displayed on the frontpage as a paginated list. The value of
-`site_paginate` determines how many entries are displayed at a time.
+`site.paginate` determines how many entries are displayed at a time.
 
 Other files in `content` (i.e. those that do not have a `section` value of
 `blog`) are regarded as "pages" and go into the navigation in the sidebar. A

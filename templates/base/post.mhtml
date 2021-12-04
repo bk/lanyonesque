@@ -2,8 +2,8 @@
 
 <%block name="content">
   <div class="post">
-    <h1 class="post-title">${ title or '(title missing)' }</h1>
-    <span class="post-date">${ self.dates.date_format(pubdate or MTIME) }</span>
+    <h1 class="post-title">${ page.title or '(title missing)' }</h1>
+    <span class="post-date">${ self.dates.date_format(page.pubdate or MTIME) }</span>
     ${ CONTENT }
   </div>
   ${ related_posts() }
@@ -19,11 +19,12 @@
     <h2>Related posts</h2>
     <ul class="related-posts">
       % for post in posts:
+        <% p = post['data']['page'] %>
         <li>
           <h3>
             <a href="${ site_leading_path or '' }${ post['url'] }">
-              ${ post['data']['title'] }
-              <small>${ post['data']['pubdate'] }</small>
+              ${ p.title }
+              <small>${ self.dates.date_format(p.pubdate or post['data']['MTIME']) }</small>
             </a>
           </h3>
         </li>

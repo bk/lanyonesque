@@ -18,24 +18,25 @@ def xmldate(dt):
 <%namespace name="default" file="base/default.mhtml" />
 <%
   posts = default.all_posts()
-  page_size = context.get('site_paginate', 5)
+  page_size = context.get('site.paginate', 5)
 %>\
- <title>${ site_title }</title>
- <link href="${ site_base_url }${ site_leading_path or '' }/atom.xml" rel="self"/>
- <link href="${ site_base_url }${ site_leading_path or '' }/"/>
+ <title>${ site.title }</title>
+ <link href="${ site.base_url }${ site.leading_path or '' }/atom.xml" rel="self"/>
+ <link href="${ site.base_url }${ site.leading_path or '' }/"/>
  <updated>${ xmldate(datetime.datetime.now()) }</updated>
- <id>${ site_base_url }${ site_leading_path or '' }/</id>
+ <id>${ site.base_url }${ site.leading_path or '' }/</id>
  <author>
-   <name>${ site_author }</name>
-   <email>${ site_author_email }</email>
+   <name>${ site.author }</name>
+   <email>${ site.author_email }</email>
  </author>
 
  % for post in posts[:page_size]:
+   <% page = post['data']['page'] %>\
  <entry>
-   <title>${ post['data']['title'] }</title>
-   <link href="${ site_base_url }${ site_leading_path or '' }${ post['url'] |pathtruncate }"/>
-   <updated>${ xmldate(post['data']['pubdate']) }</updated>
-   <id>${ site_base_url }${ post['url'] |pathtruncate }</id>
+   <title>${ page.title }</title>
+   <link href="${ site.base_url }${ site.leading_path or '' }${ post['url'] |pathtruncate }"/>
+   <updated>${ xmldate(page.pubdate) }</updated>
+   <id>${ site.base_url }${ post['url'] |pathtruncate }</id>
    <content type="html">${ post['rendered'] | x }</content>
  </entry>
  % endfor

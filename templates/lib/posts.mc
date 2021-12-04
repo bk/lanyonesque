@@ -7,22 +7,23 @@ import markdown
 <%def name="posts_list(posts, detail=None)">
 <%
 if detail is None:
-    detail = site_posts_list_detail or 'full'  # title, summary, full
+    detail = site.posts_list_detail or 'full'  # title, summary, full
 %>
   % for post in posts:
+    <% p = post['data']['page'] %>
     <div class="post">
       <h1 class="post-title">
-        <a href="${ site_leading_path or '' }${ post['url'] }">
-          ${ post['data']['title'] }
+        <a href="${ site.leading_path or '' }${ post['url'] }">
+          ${ p.title }
         </a>
       </h1>
-      <span class="post-date">${ date_format(post['data'].get('pubdate', post['data']['MTIME'])) }</span>
+      <span class="post-date">${ date_format(p.pubdate or post['data']['MTIME']) }</span>
       % if detail == 'title':
         ## Don't show any more of the post in this case
         <% pass %>
       % elif detail == 'summary':
         ${ summary(post) }
-        <p class="read-more"><a href="${ site_leading_path or '' }${ post['url'] }">Read more »</a></p>
+        <p class="read-more"><a href="${ site.leading_path or '' }${ post['url'] }">Read more »</a></p>
       % else:
         ## Full post text
         ${ post['rendered'] }
@@ -33,8 +34,8 @@ if detail is None:
 
 <%def name="summary(post)">
 <%
-if 'summary' in post['data']:
-    s = post['data']['summary']
+if 'summary' in post['data']['page']:
+    s = post['data']['page']['summary']
 else:
     # Create summary out of first paragraph of Markdown source
     s = post['doc']
