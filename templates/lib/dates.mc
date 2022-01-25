@@ -15,9 +15,9 @@ import locale
         dt = datetime.datetime.fromisoformat(dt)
     is_dt = isinstance(dt, datetime.datetime)  # otherwise datetime.date
     if fmt is None and is_dt:
-        fmt = site_datetime_format or None
+        fmt = site.datetime_format or None
     if fmt is None:
-        fmt = site_date_format or ('%Y-%m-%d %H:%M' if is_dt else '%Y-%m-%d')
+        fmt = site.date_format or ('%Y-%m-%d %H:%M' if is_dt else '%Y-%m-%d')
     return dt.strftime(fmt)
 %>\
 </%def>

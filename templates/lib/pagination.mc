@@ -20,7 +20,7 @@ Normal usage pattern in the calling page:
 </%doc>\
 <%
     if page_size is None:
-        page_size = context.get('site_paginate', 5)
+        page_size = context.get('site.paginate', 5)
     page_count = math.ceil(len(collection) / page_size)
     if page_count < 2:
         # chunk, page_count, curpage, page_urls
@@ -59,12 +59,12 @@ if page_count <= 1 and not force:
     % if page == 1:
       <span class="pagination-item prev">« ${ prev_label }</span>
     % else:
-      <a class="pagination-item prev" href="${ site_leading_path or '' }${ page_urls[page-2] }">« ${ prev_label }</a>
+      <a class="pagination-item prev" href="${ site.leading_path or '' }${ page_urls[page-2] }">« ${ prev_label }</a>
     % endif
     % if page == page_count:
       <span class="pagination-item next">${ next_label } »</span>
     % else:
-      <a class="pagination-item next" href="${ site_leading_path or '' }${ page_urls[page] }">${ next_label } »</a>
+      <a class="pagination-item next" href="${ site.leading_path or '' }${ page_urls[page] }">${ next_label } »</a>
     % endif
     <br><small class="info">[ Page ${ page } of ${ page_count } ]</small>
   </div>

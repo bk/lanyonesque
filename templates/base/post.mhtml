@@ -22,7 +22,7 @@
         <% p = post['data']['page'] %>
         <li>
           <h3>
-            <a href="${ site_leading_path or '' }${ post['url'] }">
+            <a href="${ site.leading_path or '' }${ post['url'] }">
               ${ p.title }
               <small>${ self.dates.date_format(p.pubdate or post['data']['MTIME']) }</small>
             </a>
